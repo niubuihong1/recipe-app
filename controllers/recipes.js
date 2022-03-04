@@ -8,3 +8,11 @@ module.exports.index = async (req, res) => {
 module.exports.renderNewForm = (req, res) => {
   res.render("recipes/new");
 };
+
+module.exports.createRecipe = async (req, res, next) => {
+  console.log(req.body.recipe);
+  const newRecipe = new Recipe(req.body.recipe);
+  await newRecipe.save();
+  res.redirect("/recipes/");
+  // res.redirect(`/recipes/${newRecipe._id}`);
+};
