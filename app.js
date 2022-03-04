@@ -4,10 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require("mongoose")
+const ejsMate = require("ejs-mate")
+
 
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const recipeRoutes = require("./routes/recipes")
 
 // Set up Mongoose connection
 mongoose.connect('mongodb://localhost:27017/recipe-app').catch((error) => {
@@ -31,6 +34,7 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine("ejs", ejsMate)
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -39,8 +43,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Setting up routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use("/recipes", recipeRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
