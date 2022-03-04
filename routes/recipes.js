@@ -7,6 +7,12 @@ router.route("/").get(catchAsync(recipes.index)).post(catchAsync(recipes.createR
 
 router.get("/new", recipes.renderNewForm);
 
-router.route("/:id").get(catchAsync(recipes.showRecipe)).delete(catchAsync(recipes.deleteRecipe));
+router
+  .route("/:id")
+  .get(catchAsync(recipes.showRecipe))
+  .delete(catchAsync(recipes.deleteRecipe))
+  .patch(catchAsync(recipes.editRecipe));
+
+router.get("/:id/edit", catchAsync(recipes.renderEditForm));
 
 module.exports = router;
