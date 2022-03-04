@@ -7,6 +7,6 @@ router.route("/").get(catchAsync(recipes.index)).post(catchAsync(recipes.createR
 
 router.get("/new", recipes.renderNewForm);
 
-router.route("/:id").get(catchAsync(recipes.showRecipe));
+router.route("/:id").get(catchAsync(recipes.showRecipe)).delete(catchAsync(recipes.deleteRecipe));
 
 module.exports = router;

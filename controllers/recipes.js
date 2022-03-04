@@ -33,3 +33,9 @@ module.exports.showRecipe = async (req, res) => {
   }
   res.render("recipes/show", { recipe });
 };
+
+module.exports.deleteRecipe = async (req, res) => {
+  const recipeId = req.params.id;
+  await Recipe.findByIdAndDelete(recipeId); //NOTE: delete associated reviews with mongoose middleware, but it's specific for .findByIdAndDelete
+  res.redirect("/recipes");
+};
