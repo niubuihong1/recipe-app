@@ -13,8 +13,8 @@ module.exports.createRecipe = async (req, res, next) => {
   console.log(req.body.recipe);
   const newRecipe = new Recipe(req.body.recipe);
   await newRecipe.save();
-  res.redirect("/recipes/");
-  // res.redirect(`/recipes/${newRecipe._id}`);
+  req.flash("success", "Successfully uploaded a new recipe!")
+  res.redirect(`/recipes/${newRecipe._id}`);
 };
 
 module.exports.showRecipe = async (req, res) => {
