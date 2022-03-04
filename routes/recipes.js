@@ -5,4 +5,6 @@ const recipes = require("../controllers/recipes");
 
 router.route("/").get(catchAsync(recipes.index));
 
+router.get("/new", recipes.renderNewForm);
+
 module.exports = router;

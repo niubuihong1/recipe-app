@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+  <h1 class="text-center">New Recipe</h1>
+  <div class="col-6 offset-3">
+    <form action="/recipes" method="POST" class="validated-form" novalidate>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title: </label>
+        <input required type="text" id="title" name="recipe[title]" placeholder="Title" class="form-control" />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image Url: </label>
+        <input required type="text" id="image" name="recipe[image]" placeholder="Image" class="form-control" />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description: </label>
+        <textarea required type="text" id="description" name="recipe[description]" placeholder="Description" class="form-control"></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price: </label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="label-price">$</span>
+          <input required type="text" class="form-control" placeholder="Price" aria-label="price" aria-describedby="label-price" id="price" name="recipe[price]" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">Add Recipe</button>
+      </div>
+    </form>
+    <footer>
+      <a href="/recipes">All Recipes</a>
+    </footer>
+  </div>
+</div>
+
+
