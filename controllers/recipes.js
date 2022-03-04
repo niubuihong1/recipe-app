@@ -44,7 +44,14 @@ module.exports.renderEditForm = async (req, res) => {
   const recipeId = req.params.id;
   const recipe = await Recipe.findById(recipeId);
   if (!recipe) {
-      return res.redirect("/recipes");
+    return res.redirect("/recipes");
   }
   res.render("recipes/edit", { recipe });
+};
+
+module.exports.editRecipe = async (req, res) => {
+  const recipeId = req.params.id;
+  const updatedRecipe = req.body.recipe;
+  const recipe = await Recipe.findByIdAndUpdate(recipeId, updatedRecipe);
+  res.redirect(`/recipes/${recipe._id}`);
 };
