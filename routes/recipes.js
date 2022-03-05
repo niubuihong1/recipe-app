@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
-const { isLoggedIn } = require("../middleware");
+const { isLoggedIn, isAuthor } = require("../middleware");
 
 const recipes = require("../controllers/recipes");
 
@@ -15,10 +15,10 @@ router.get("/new", isLoggedIn, recipes.renderNewForm);
 router
   .route("/:id")
   .get(catchAsync(recipes.showRecipe))
-  .delete(isLoggedIn, catchAsync(recipes.deleteRecipe))
-  .patch(isLoggedIn, catchAsync(recipes.editRecipe));
+  .delete(isLoggedIn, isAuthor, catchAsync(recipes.deleteRecipe))
+  .patch(isLoggedIn, isAuthor, catchAsync(recipes.editRecipe));
 
 // Render edit-recipe form
-router.get("/:id/edit", isLoggedIn, catchAsync(recipes.renderEditForm));
+router.get("/:id/edit", isLoggedIn, isAuthor, catchAsync(recipes.renderEditForm));
 
 module.exports = router;
