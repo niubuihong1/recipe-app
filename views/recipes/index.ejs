@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <h1>All Recipes</h1>
 <div>
-  <a href="/recipes/new">Add a Recipe</a>
+  <a class="link-dark" href="/recipes/new">Add a Recipe</a>
 </div>
 <ol class="p-0">
   <% for (let recipe of recipes) { %>
@@ -14,7 +14,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= recipe.title %></h5>
           <p class="card-text"><%= recipe.description %></p>
-          <a href="/recipes/<%= recipe._id %>" class="btn btn-primary">View <%= recipe.title %></a>
+          <a href="/recipes/<%= recipe._id %>" class="btn btn-outline-dark">View <%= recipe.title %></a>
         </div>
       </div>
     </div>

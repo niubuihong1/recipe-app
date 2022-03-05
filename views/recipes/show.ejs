@@ -14,9 +14,9 @@
       </ul>
       <% if (currentUser && recipe.author.equals(currentUser._id)) { %>
       <div class="card-body">
-        <a href="/recipes/<%= recipe._id %>/edit" class="card-link btn btn-info">Edit</a>
+        <a href="/recipes/<%= recipe._id %>/edit" class="card-link btn btn-outline-info">Edit</a>
         <form class="d-inline" action="/recipes/<%=recipe._id%>?_method=DELETE" method="POST">
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-outline-danger">Delete</button>
         </form>
       </div>
       <% } %>
@@ -55,7 +55,7 @@
         <p class="card-text">Review: <%= review.body %></p>
         <% if (currentUser && review.author.equals(currentUser._id)) { %>
         <form method="POST" action="/recipes/<%= recipe._id %>/reviews/<%= review._id %>?_method=DELETE">
-          <button class="btn btn-sm btn-danger">Delete</button>
+          <button class="btn btn-sm btn-outline-danger">Delete</button>
         </form>
         <% } %>
       </div>
