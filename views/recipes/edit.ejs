@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+  <h1 class="text-center">Update Recipe</h1>
+  <div class="col-6 offset-3">
+    <form class="validated-form" novalidate action="/recipes/<%= recipe._id %>/?_method=PATCH" method="POST">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title: </label>
+        <input required type="text" id="title" name="recipe[title]" placeholder="Title" class="form-control" value="<%= recipe.title %> " />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image Url: </label>
+        <input required type="text" id="image" name="recipe[image]" placeholder="Image" class="form-control" value="<%= recipe.image %> " />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description: </label>
+        <textarea required type="text" id="description" name="recipe[description]" placeholder="Description" rows="5" class="form-control"><%= recipe.description %></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price: </label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="label-price">$</span>
+          <input required type="text" class="form-control" placeholder="Price" aria-label="price" aria-describedby="label-price" id="price" name="recipe[price]" value="<%= recipe.price %> " />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-info text-light">Update Recipe</button>
+      </div>
+    </form>
+    <footer>
+      <a href="/recipes/<%= recipe._id %> ">Back to Recipe</a>
+    </footer>
+  </div>
+</div>

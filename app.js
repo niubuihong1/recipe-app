@@ -12,8 +12,8 @@ const flash = require("connect-flash")
 
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const recipeRoutes = require("./routes/recipes")
+const reviewRoutes = require("./routes/review")
 
 // Set up Mongoose connection
 mongoose.connect('mongodb://localhost:27017/recipe-app').catch((error) => {
@@ -69,8 +69,9 @@ app.use((req, res, next) => {
 
 // Setting up routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use("/recipes", recipeRoutes);
+app.use("/recipes/:id/reviews", reviewRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
