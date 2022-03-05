@@ -1,3 +1,5 @@
+const { recipeSchema, reviewSchema } = require("./schemas");
+const createError = require("http-errors");
 const Recipe = require("./models/recipe");
 const Review = require("./models/review");
 
@@ -33,4 +35,22 @@ module.exports.isReviewAuthor = async (req, res, next) => {
     return res.redirect(`/recipes/${recipeId}`);
   }
   next();
+};
+
+module.exports.validateRecipe = (req, res, next) => {
+  const validationResult = recipeSchema.validate(req.body);
+  if (validationResult.error) {
+    const errorMsg = validationResult.error.details.map((e) => e.message).join(",");
+    return next(createError(500, errorMsg));
+  }
+  return next();
+};
+
+module.exports.validateReview = (req, res, next) => {
+  const validationResult = reviewSchema.validate(req.body);
+  if (validationResult.error) {
+    const errorMsg = validationResult.error.details.map((e) => e.message).join(",");
+    return next(createError(500, errorMsg));
+  }
+  return next();
 };
