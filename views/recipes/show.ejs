@@ -9,7 +9,7 @@
         <p class="card-text"><%= recipe.description %></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Submitted by <%= //recipe.author.username %></li>
+        <li class="list-group-item">Submitted by <%= recipe.author.username %></li>
         <li class="list-group-item">$<%= recipe.price %></li>
       </ul>
       <div class="card-body">
@@ -43,7 +43,7 @@
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">Rating: <%= review.rating %></h5>
-        <p class="card-subtitle mb-2 text-muted">By <%= //review.author.username %></p>
+        <p class="card-subtitle mb-2 text-muted">By <%= review.author.username %></p>
         <p class="card-text">Review: <%= review.body %></p>
         <form method="POST" action="/recipes/<%= recipe._id %>/reviews/<%= review._id %>?_method=DELETE">
           <button class="btn btn-sm btn-danger">Delete</button>
