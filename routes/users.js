@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
-const passport = require("passport")
+const passport = require("passport");
 
 const users = require("../controllers/users");
 
@@ -14,5 +14,7 @@ router
     passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }),
     users.login
   );
+
+router.get("/logout", users.logout);
 
 module.exports = router;
