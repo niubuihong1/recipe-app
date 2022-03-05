@@ -13,11 +13,23 @@ module.exports.register = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-      req.flash("success", "Welcome to YelpCamp!");
+      req.flash("success", "Welcome to OurRecipes!");
       res.redirect("/recipes");
     });
   } catch (e) {
     req.flash("error", e.message);
     res.redirect("/register");
   }
+};
+
+module.exports.renderLogin = (req, res) => {
+  res.render("users/login")
+}
+
+module.exports.login = (req, res) => {
+  req.flash("success", "Welcome back!")
+  const redirectUrl = req.session.returnTo || "/recipes";
+  delete req.session.returnTo;
+  console.log(redirectUrl);
+  res.redirect(redirectUrl);
 };
