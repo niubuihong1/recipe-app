@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const catchAsync = require("../utils/catchAsync")
+const users = require("../controllers/users");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.route("/register")
+    .get(users.renderRegister)
+    .post(catchAsync(users.register))
 
 module.exports = router;
