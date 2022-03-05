@@ -13,6 +13,7 @@ const LocalStrategy = require("passport-local");
 
 const User = require("./models/user");
 
+const indexRoutes = require("./routes/index");
 const userRoutes = require("./routes/users");
 const recipeRoutes = require("./routes/recipes");
 const reviewRoutes = require("./routes/review");
@@ -79,9 +80,7 @@ app.use((req, res, next) => {
 app.use("/recipes", recipeRoutes);
 app.use("/recipes/:id/reviews", reviewRoutes);
 app.use("/", userRoutes);
-app.use("/", (req, res) => {
-  res.render("home");
-});
+app.use("/", indexRoutes)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
