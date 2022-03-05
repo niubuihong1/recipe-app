@@ -5,16 +5,20 @@ const { isLoggedIn } = require("../middleware");
 
 const recipes = require("../controllers/recipes");
 
+// Show all recipes, create a new recipe
 router.route("/").get(catchAsync(recipes.index)).post(isLoggedIn, catchAsync(recipes.createRecipe));
 
-router.get("/new", recipes.renderNewForm);
+// Render create-recipe form
+router.get("/new", isLoggedIn, recipes.renderNewForm);
 
+// Show, delete, edit a specific recipe
 router
   .route("/:id")
   .get(catchAsync(recipes.showRecipe))
-  .delete(catchAsync(recipes.deleteRecipe))
-  .patch(catchAsync(recipes.editRecipe));
+  .delete(isLoggedIn, catchAsync(recipes.deleteRecipe))
+  .patch(isLoggedIn, catchAsync(recipes.editRecipe));
 
-router.get("/:id/edit", catchAsync(recipes.renderEditForm));
+// Render edit-recipe form
+router.get("/:id/edit", isLoggedIn, catchAsync(recipes.renderEditForm));
 
 module.exports = router;
