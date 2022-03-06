@@ -2,7 +2,6 @@
 
 A Node.js MVC web application where users can share their favorite recipes. The application allows authenticated users to do basic CRUD operations on their recipes as well as make comments on others' recipes. Unauthenticated users can view all recipes shared on the application.
 
----
 
 ## Requirements
 
@@ -11,7 +10,6 @@ For development, you will need to have the followings installed:
 * npm
 * MongoDB
 
----
 
 ## Install
 
@@ -34,7 +32,6 @@ Or, with no auto-restart and no debug logs:
 
     $ npm start
     
----
 
 ## Project structure
 * App
