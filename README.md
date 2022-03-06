@@ -17,7 +17,6 @@ For development, you will need to have the followings installed:
     $ cd recipe-app
     $ npm install
 
----
 
 ## Running the project
 To run the project in development mode with debug logs and auto-restart on file change (recommended):
