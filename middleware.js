@@ -1,6 +1,6 @@
 const { recipeSchema, reviewSchema } = require("./schemas");
 const createError = require("http-errors");
-const Recipe = require("./models/recipe");
+const { Recipe } = require("./models/recipe");
 const Review = require("./models/review");
 
 // Check if the user is logged in

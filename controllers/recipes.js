@@ -1,4 +1,5 @@
-const Recipe = require("../models/recipe");
+const RecipeModel = require("../models/recipe");
+const { Recipe } = RecipeModel
 
 // Render index page to show all recipes
 module.exports.index = async (req, res) => {
@@ -24,15 +25,7 @@ module.exports.createRecipe = async (req, res, next) => {
 // Render show page for a specific recipe
 module.exports.showRecipe = async (req, res) => {
   const recipeId = req.params.id;
-  const recipe = await Recipe.findById(recipeId)
-    .populate({
-      path: "reviews",
-      populate: {
-        path: "author",
-      },
-    })
-    .populate("author");
-  console.log(recipe);
+  const recipe = await RecipeModel.findOneRecipe(recipeId);
   if (!recipe) {
     req.flash("error", "Cannot find that recipe!");
     return res.redirect("/recipes");
@@ -44,16 +37,16 @@ module.exports.showRecipe = async (req, res) => {
 module.exports.deleteRecipe = async (req, res) => {
   const recipeId = req.params.id;
   await Recipe.findByIdAndDelete(recipeId); //NOTE: delete associated reviews with mongoose middleware, but it's specific for .findByIdAndDelete
-  req.flash("success", "Successfully deleted a recipe!")
+  req.flash("success", "Successfully deleted a recipe!");
   res.redirect("/recipes");
 };
 
-// Render edit form 
+// Render edit form
 module.exports.renderEditForm = async (req, res) => {
   const recipeId = req.params.id;
   const recipe = await Recipe.findById(recipeId);
   if (!recipe) {
-    req.flash("error", "Cannot find that recipe!")
+    req.flash("error", "Cannot find that recipe!");
     return res.redirect("/recipes");
   }
   res.render("recipes/edit", { recipe });
@@ -64,6 +57,6 @@ module.exports.editRecipe = async (req, res) => {
   const recipeId = req.params.id;
   const updatedRecipe = req.body.recipe;
   const recipe = await Recipe.findByIdAndUpdate(recipeId, updatedRecipe);
-  req.flash("success", "Successfully updated recipe!")
+  req.flash("success", "Successfully updated recipe!");
   res.redirect(`/recipes/${recipe._id}`);
 };

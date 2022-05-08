@@ -31,4 +31,19 @@ RecipeSchema.post("findOneAndDelete", async function (doc) {
   }
 });
 
-module.exports = mongoose.model("Recipe", RecipeSchema);
+const Recipe = mongoose.model("Recipe", RecipeSchema);
+
+module.exports.findOneRecipe = async (recipeId) => {
+  const recipe = await Recipe.findById(recipeId)
+  .populate({
+    path: "reviews",
+    populate: {
+      path: "author",
+    },
+    })
+    .populate("author");
+  console.log("REFACTORED", recipe);
+  return recipe
+}
+
+module.exports.Recipe = Recipe; 
